@@ -1,0 +1,44 @@
+* {
+    font-family: Sans-Serif;
+}
+
+html, body {
+    margin: 0;
+    height: 100%
+}
+
+h1 {
+    background-color: #FFDF73;
+    width: 20%;
+    height: 10%;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    padding-top: 17px;
+    padding-bottom: 0px;
+}
+
+body {
+    background-image: url(bookshelf.svg);
+    background-position: center top;
+    background-size: auto 15%;
+    background-repeat: repeat-x;
+}
+
+#bookshelf {
+    float: left;
+    padding: 2%;
+    width: 66%;
+    height: 100%;
+}
+
+#sidebar {
+    float: left;
+    border-left: 1px solid #000000;
+    padding: 2%;
+    height: 100%;
+    width: 25%;
+    min-width: 250px;
+}

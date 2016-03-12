@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pocket Library</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+
+    <body>
+        <h1>Pocket Library</h1>
+        <hr>
+        <noscript> Javascript is required to use the library. Sorry, procesisng had to be done
+    client-side.</noscript>
+        <div id="bookshelf">
+            <h2>Book Selection</h2>
+                Browse at your leisure...
+        </div>
+        <div id="sidebar">
+            <h3> Welcome </h3>
+            This is Pocket Library, the portable WiFi library that anyone can read from and
+            contribute to. Learn to setup your own <a href="website">here</a>.
+            <h3> Contribute </h3>
+            Got any books worth reading? Upload them below.
+
+            <form class="book_upload" method="post" action="cgi-bin/upload.sh" enctype="multipart/form-data">
+                <input type="file" name="file" />
+                <input type="submit" />
+            </form>
+
+            Please note that books need to be approved by the library owner before you they are
+            shown.
+        </div>
+    </body>
+
+    <script>
+    </script>
+</html>
