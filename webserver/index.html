@@ -5,11 +5,11 @@
         <link rel="stylesheet" href="index.css">
     </head>
 
-    <body>
+    <body onload="setupPage()">
         <h1>Pocket Library</h1>
         <hr>
-        <noscript> Javascript is required to use the library. Sorry, procesisng had to be done
-    client-side.</noscript>
+        <noscript> <em>Javascript is required to use the library. Sorry, procesisng has to be done
+                client-side. </em></noscript>
         <div id="bookshelf">
             <h2>Book Selection</h2>
                 Browse at your leisure...
@@ -32,5 +32,23 @@
     </body>
 
     <script>
+    "use strict";
+    var book_file_list;
+
+    function setupPage() {
+        getBookList()
+    } 
+    function getBookList() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                book_file_list = xhttp.responseText;
+                console.log(book_file_list);
+            }
+        };
+        xhttp.open("GET", "cgi-bin/book-list.sh", true);
+        xhttp.send();
+    } 
+
     </script>
 </html>
