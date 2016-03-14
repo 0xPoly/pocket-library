@@ -2,6 +2,5 @@
 
 echo 'Content-type: text/html'
 echo ''
-echo 'hello world'
-echo 'second book'
+ls /mnt/usb
 exit 0
