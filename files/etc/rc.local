@@ -1,0 +1,29 @@
+#!/bin/ash
+# This script runs on first boot and then deletes itself
+
+# Wifi Config
+## Regenerate Configuration, avoids hardcoding
+rm -f /etc/config/wireless
+wifi detect > /etc/config/wireless
+
+## Enable wireless, create backup of original config
+sed -i.bak '/option disabled 1/d' /etc/config/wireless
+
+## Change AP name to 'Pocket Library'. 
+## [[:space:]] works on more systems than \s 
+sed -i -E "s/option[[:space:]]+ssid[[:space:]]+OpenWrt/option ssid 'Pocket Library'/ig" /etc/config/wireless
+
+## Sometimes Wifi locks up
+wifi
+wifi down
+wifi up
+
+# USB drive config
+/etc/init.d/storage enable
+/etc/init.d/storage start
+
+# Setup book redirect
+ln -s /mnt/usb /www/books
+
+echo "I am not all that is. I am Life fighting Nothingness."
+rm $0
