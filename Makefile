@@ -14,7 +14,7 @@ get-frimware:
 	tar -xjf OpenWrt*
 
 image:
-	mkdir files/www
+	mkdir -p files/www
 	cp -r webpages/* files/www
 	cd build/openwrt/OpenWrt* && \
 	make image PROFILE=$(profile) PACKAGES=$(packages) FILES=$(FILES_DIR)
