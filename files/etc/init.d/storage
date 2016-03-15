@@ -1,0 +1,13 @@
+#!/bin/sh /etc/rc.common
+
+START=10
+STOP=15
+
+start() {
+mkdir -p /mnt/usb
+mount /dev/sda1 /mnt/usb
+}
+
+stop() {
+umount /dev/sda1
+}
