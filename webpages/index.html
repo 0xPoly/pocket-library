@@ -3,9 +3,10 @@
     <head>
         <title>Pocket Library</title>
         <link rel="stylesheet" href="index.css">
+        <script rel="text/javascript" src="index.js"></script>
     </head>
 
-    <body onload="setupPage()">
+    <body>
         <h1>Pocket Library</h1>
         <hr>
         <noscript> <em>Javascript is required to use the library. Sorry, procesisng has to be done
@@ -13,6 +14,8 @@
         <div id="bookshelf">
             <h2>Book Selection</h2>
                 Browse at your leisure...
+                <div id="book-container">
+                </div>
         </div>
         <div id="sidebar">
             <h3> Welcome </h3>
@@ -30,25 +33,4 @@
             shown.
         </div>
     </body>
-
-    <script>
-    "use strict";
-    var book_file_list;
-
-    function setupPage() {
-        getBookList()
-    } 
-    function getBookList() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
-                book_file_list = xhttp.responseText;
-                console.log(book_file_list);
-            }
-        };
-        xhttp.open("GET", "cgi-bin/book-list.sh", true);
-        xhttp.send();
-    } 
-
-    </script>
 </html>

@@ -43,6 +43,15 @@ body {
     min-width: 250px;
 }
 
+.book-cover {
+    border: 1px solid black;
+    float: left;
+    width: 20%;
+    min-height: 200px;
+    margin: 15px;
+    padding: 15px;
+}
+
 noscript {
     color: red;
     margin-left: 10px;

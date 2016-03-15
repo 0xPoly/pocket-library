@@ -19,7 +19,7 @@ case "$REQUEST_METHOD" in
         echo -n "$line1"
 
         # Discard last line ($line2)
-    ) > /tmp/dummy
+    ) > /mnt/usb/new_book.pdf
 
     echo 'Status: 204 No Content'
     echo
