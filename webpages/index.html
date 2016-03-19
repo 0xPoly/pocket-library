@@ -7,30 +7,44 @@
     </head>
 
     <body>
-        <h1>Pocket Library</h1>
-        <hr>
-        <noscript> <em>Javascript is required to use the library. Sorry, procesisng has to be done
-                client-side. </em></noscript>
-        <div id="bookshelf">
+        <div id="header">
+            <h1>Pocket Library</h1>
+            <form name="searchbar" id="searchbar">
+                <input type="text" name="searchterm">
+                <button>Search</button>
+            </form>
+            <hr>
+            <noscript> 
+                <em>
+                    Javascript is required to use the library. Sorry, procesisng has to be done
+                    client-side. 
+                </em>
+            </noscript>
+        </div>
+
+        <div id="bookshelf" role="primary">
             <h2>Book Selection</h2>
                 Browse at your leisure...
                 <div id="book-container">
                 </div>
         </div>
-        <div id="sidebar">
+
+        <div id="sidebar" role="complementary">
             <h3> Welcome </h3>
-            This is Pocket Library, the portable WiFi library that anyone can read from and
-            contribute to. Learn to setup your own <a href="website">here</a>.
+                This is Pocket Library, the portable WiFi library that anyone can read from and
+                contribute to. Learn to setup your own <a href="website">here</a>.
             <h3> Contribute </h3>
-            Got any books worth reading? Upload them below.
+                Got any books worth reading? Upload them below.
 
             <form class="book_upload" method="post" action="cgi-bin/upload.sh" enctype="multipart/form-data">
-                <input type="file" name="file" />
-                <input type="submit" class="flat-button" />
+                <input type="file" name="file"/>
+                <input type="submit" />
             </form>
-
-            Please note that books need to be approved by the library owner before you they are
-            shown.
+            <div class="footnote">
+                <hr>
+                Please note that books need to be approved by the library owner before you they are
+                shown.
+            </div>
         </div>
     </body>
 </html>
