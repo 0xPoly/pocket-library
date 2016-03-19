@@ -52,7 +52,6 @@ function funSearchHint() {
                  "Your wish is my command...",
                  "Information wants to be free!",
                  "Read all the things!",
-                 "Another enemy of ignorance!",
                  "Yours could be here one day...",
                  "Share the love...",
                  "Breaking down barriers...",
