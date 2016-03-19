@@ -1,6 +1,7 @@
 "use strict";
 
 function setupPage() {
+    funSearchHint();
     getBookList();
 } 
 
@@ -35,6 +36,29 @@ function formatBookList(book_files) {
     }
 
     return bookCovers;
+}
+
+Array.prototype.randomElement = function () {
+    return this[Math.floor(Math.random() * this.length)]
+}
+
+function funSearchHint() {
+    var hints = ["Find your favorite book...",
+                 "Find that trendy bestseller...",
+                 "Find a hidden jem...",
+                 "Fiction? Non-fiction?",
+                 "What do you want to read?",
+                 "Much faster than a librarian!",
+                 "Your wish is my command...",
+                 "Information wants to be free!",
+                 "Read all the things!",
+                 "Another enemy of ignorance!",
+                 "Yours could be here one day...",
+                 "Share the love...",
+                 "Breaking down barriers...",
+                 "Fight the book burners!"];
+    var selected = hints.randomElement();
+    document.searchbar.searchterm.placeholder = selected; 
 }
 
 window.onload = setupPage;
