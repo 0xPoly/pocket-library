@@ -11,12 +11,12 @@
             <h1>Pocket Library</h1>
             <form name="searchbar" id="searchbar">
                 <input type="text" name="searchterm">
-                <a href="#" class="demo-pricing demo-info-1">Search</a>
+                <input type="submit" value="Search" class="clear demo-pricing demo-info-1"/>
             </form>
             <hr>
             <noscript> 
                 <em>
-                    Javascript is required to use the library. Sorry, procesisng has to be done
+                    Javascript is required to use the library. Sorry, processing has to be done
                     client-side. 
                 </em>
             </noscript>
@@ -36,9 +36,9 @@
             <h3> Contribute </h3>
                 Got any books worth reading? Upload them below.
 
-            <form class="book-upload" method="post" action="cgi-bin/upload.sh" enctype="multipart/form-data">
+            <form class="book-upload" name="upload-form" method="post" action="cgi-bin/upload.sh" enctype="multipart/form-data">
                 <input type="file" name="file"/>
-                <a href="#" class="demo-pricing demo-info-1">Upload</a>
+                <input type="submit" value="Upload" class="clear demo-pricing demo-info-1"/>
             </form>
             <div class="footnote">
                 <hr>

@@ -22,6 +22,7 @@ h1 {
     padding-left: 5%;
     height: 80%;
     padding-top: 1%;
+    vertical-align: center;
 }
 
 h2 {
@@ -39,8 +40,8 @@ h3 {
 }
 
 #searchbar input {
-    height: 30px;
-    padding-bottom: 3px;
+    height: 35px;
+    //padding-bottom: 3px;
 }
 
 hr {
@@ -76,6 +77,16 @@ body {
     background-color: #fcffc5;
 }
 
+.clear {
+    background:none;
+    border:none; 
+    padding:0;
+    
+    /*optional*/
+    color:#069;
+    cursor:pointer;
+}
+
 .book-cover {
     border: 1px solid black;
     float: left;
@@ -84,6 +95,7 @@ body {
     margin: 10px;
     padding: 10px;
 }
+
 
 .demo-pricing {
     margin-right: 10px;
