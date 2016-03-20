@@ -1,31 +1,28 @@
 #!/bin/ash
+echo "Content-Type: text/plain"
+echo
 
-case "$REQUEST_METHOD" in
-  POST)
-    (
-        # Discard first four lines
-        read && read && read && read &&
+if [ "$REQUEST_METHOD" = "POST" ]; then
+    TMPOUT=/mnt/usb/new_book.pdf
+    cat >$TMPOUT
 
-        # Read and echo, buffering two lines
-        read line1 &&
-        read line2 &&
-        while read nextline ; do
-            echo "$line1"
-            line1="$line2"
-            line2="$nextline"
-        done
+    # Get the line count
+    LINES=$(wc -l $TMPOUT | cut -d ' ' -f 1)
 
-        # Echo penultimate line with no trailing newline.
-        echo -n "$line1"
+    # Remove the first four lines
+    tail -$((LINES - 4)) $TMPOUT >$TMPOUT.1
 
-        # Discard last line ($line2)
-    ) > /mnt/usb/new_book.pdf
+    # Remove the last line
+    head -$((LINES - 5)) $TMPOUT.1 >$TMPOUT
+
+    # Copy everything but the new last line to a temporary file
+    head -$((LINES - 6)) $TMPOUT >$TMPOUT.1
+
+    # Copy the new last line but remove trailing \r\n
+    tail -1 $TMPOUT | tr -d '\r\n' >> $TMPOUT.1
+
+    rm $TMPOUT.1
 
     echo 'Status: 204 No Content'
     echo
-    ;;
-
-  *)
-    echo 'Status: 405 Method Not Allowed'
-    echo
-esac
+fi
