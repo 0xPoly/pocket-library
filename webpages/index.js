@@ -3,6 +3,7 @@
 function setupPage() {
     funSearchHint();
     getBookList();
+    setupUploadButton();
 } 
 
 function getBookList() {
@@ -61,6 +62,35 @@ function funSearchHint() {
                  "Fight the book burners!"];
     var selected = hints.randomElement();
     document.searchbar.searchterm.placeholder = selected; 
+}
+
+function setupUploadButton() {
+    document.forms["upload-form"]["file"].onchange = function() {
+        // don't let user upload until processing is complete
+        document.forms["upload-form"]["submit"].disabled = true;
+        prepareUpload();
+    };
+}
+
+function prepareUpload() {
+    setupBookName();
+    setupBookCover();
+    //document.forms["upload-form"]["submit"].disabled = false;
+}
+
+function setupBookName() {
+    var filename = document.forms["upload-form"]["file"].files[0].name;
+    document.forms["upload-form"]["filename"].value = filename;
+}
+
+function setupBookCover() {
+    var bookFile = document.forms["upload-form"]["file"].files[0];
+    var bookFileRef = window.URL.createObjectURL(bookFile);
+    generateThumbURI(bookFileRef).then(function(base64Thumbnail) {
+        var binaryThumbnail = dataURItoBlob(base64Thumbnail);
+        // TODO handle thumbnail binary
+        // document.forms["upload-form"]["coverimg"].files[0] = binaryThumbnail;
+    });
 }
 
 window.onload = setupPage;
