@@ -31,6 +31,9 @@ function formatBookList(book_files) {
     var bookCovers = "";
     for (var x = 0; x < books_list.length; x++) {
         bookCovers += "<div class='book-cover'>"
+                      + "<img src='books/thumbnails/" + books_list[x] + ".png'" 
+                      + "onerror='this.src=\"books/thumbnails/generic.png\"'"
+                      + "class='book-cover-img'/>"
                       + "<a href='books/" + books_list[x] + "'>"
                       + books_list[x] + "</a>" + "</div>";
     }
