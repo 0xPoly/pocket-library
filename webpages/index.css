@@ -96,6 +96,9 @@ body {
     padding: 10px;
 }
 
+.book-cover-img {
+    width:100%;
+}
 
 .demo-pricing {
     margin-right: 10px;
