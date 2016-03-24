@@ -65,21 +65,20 @@ function funSearchHint() {
 }
 
 function setupUploadButton() {
-    document.forms["upload-form"]["file"].onchange = function() {
-        // don't let user upload until processing is complete
-        document.forms["upload-form"]["submit"].disabled = true;
-        prepareUpload();
+    document.forms["upload-form"]["upload-thing"].onclick = function() {
+        prepareAndUpload();
     };
 }
 
-function prepareUpload() {
+function prepareAndUpload() {
     setupBookName();
     setupBookCover();
-    //document.forms["upload-form"]["submit"].disabled = false;
 }
 
 function setupBookName() {
     var filename = document.forms["upload-form"]["file"].files[0].name;
+    // bash on OpenWRT doesn't handle spaces in filenames properly
+    filename = filename.replace(/ /g,"_");
     document.forms["upload-form"]["filename"].value = filename;
 }
 
@@ -88,8 +87,13 @@ function setupBookCover() {
     var bookFileRef = window.URL.createObjectURL(bookFile);
     generateThumbURI(bookFileRef).then(function(base64Thumbnail) {
         var binaryThumbnail = dataURItoBlob(base64Thumbnail);
-        // TODO handle thumbnail binary
-        // document.forms["upload-form"]["coverimg"].files[0] = binaryThumbnail;
+        var modifiedRequest = new XMLHttpRequest();
+
+        var formData = new FormData(document.forms["upload-form"]);
+        formData.append("cover", binaryThumbnail);
+
+        modifiedRequest.open("POST", "cgi-bin/upload.sh");
+        modifiedRequest.send(formData);
     });
 }
 

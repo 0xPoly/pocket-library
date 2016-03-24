@@ -4,7 +4,7 @@
         <title>Pocket Library</title>
         <link rel="stylesheet" href="index.css">
         <script rel="text/javascript" src="index.js"></script>
-        <script rel="text/javascript" src="pdf.js"></script>
+        <script rel="text/javascript" src="books/js/pdf.js"></script>
         <script rel="text/javascript" src="upload.js"></script>
     </head>
 
@@ -41,8 +41,8 @@
             <form class="book-upload" name="upload-form" method="post" action="cgi-bin/upload.sh" enctype="multipart/form-data">
                 <input type="file" name="file"/>
                 <input type="hidden" name="filename"/>
-                <input type="hidden" name="coverimg"/>
-                <input type="submit" value="Upload" class="clear demo-pricing demo-info-1"/>
+                <input type="button" name="upload-thing" value="Upload"
+                class="clear demo-pricing demo-info-1"/>
             </form>
             <div class="footnote">
                 <hr>

@@ -3,26 +3,32 @@ echo "Content-Type: text/plain"
 echo
 
 if [ "$REQUEST_METHOD" = "POST" ]; then
-    TMPOUT=/mnt/usb/new_book.pdf
+    TMPOUT=/mnt/usb/tmp
     cat >$TMPOUT
 
-    # Get the line count
-    LINES=$(wc -l $TMPOUT | cut -d ' ' -f 1)
+    # Split into 4 files:
+    # 1.tmp, containing the PDF
+    # 2.tmp, containing the PDF name
+    # 3.tmp, containing the PDF cover PNG
+    csplit --digits=1  --quiet --prefix=$TMPOUT $TMPOUT "/------WebKitFormBoundary/" "{*}"
+    
+    rm $TMPOUT"0"
+    rm $TMPOUT"4"
 
-    # Remove the first four lines
-    tail -$((LINES - 4)) $TMPOUT >$TMPOUT.1
+    # First 4 lines are POST metadata, not needed
+    sed -i 1,4d $TMPOUT"1"
+    sed -i 1,3d $TMPOUT"2"
+    sed -i 1,4d $TMPOUT"3"
 
-    # Remove the last line
-    head -$((LINES - 5)) $TMPOUT.1 >$TMPOUT
+    # Keep the name
+    NAME=`cat $TMPOUT"2" | tr -d '\r\n'`
+    mv $TMPOUT"1" "/mnt/usb/"$NAME
+    mv $TMPOUT"3" "/mnt/usb/thumbnails/"$NAME".png"
 
-    # Copy everything but the new last line to a temporary file
-    head -$((LINES - 6)) $TMPOUT >$TMPOUT.1
-
-    # Copy the new last line but remove trailing \r\n
-    tail -1 $TMPOUT | tr -d '\r\n' >> $TMPOUT.1
-
-    rm $TMPOUT.1
-
+    rm $TMPOUT"2"
+    rm $TMPOUT
+    
     echo 'Status: 204 No Content'
     echo
 fi
+
