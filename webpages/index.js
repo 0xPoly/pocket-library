@@ -33,13 +33,13 @@ function displayBookList(book_files) {
 function formatBookList(book_files) {
     books_list = book_files.split("\n");
     // remove files that are not PDF, for now
-    var displayed_books_list = books_list.filter(function(element) {
+    books_list = books_list.filter(function(element) {
         return element.indexOf(".pdf") != -1;
     });
 
     var bookCovers = "";
-    for (var x = 0; x < displayed_books_list.length; x++) {
-        bookCovers += generateBookCard(displayed_books_list[x]);
+    for (var x = 0; x < books_list.length; x++) {
+        bookCovers += generateBookCard(books_list[x]);
     }
 
     return bookCovers;
@@ -115,6 +115,9 @@ function setupSearchButton() {
         searchBooks(searchTerm);
     };
     document.forms["searchbar"].onsubmit = function() {
+        var searchTerm = document.forms["searchbar"]["searchterm"].value;
+        searchBooks(searchTerm);
+        // disables get request
         return false;
     }
 }

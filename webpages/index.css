@@ -63,7 +63,8 @@ body {
     float: left;
     padding: 2%;
     width: 66%;
-    height: 100%;
+    height: auto;
+    min-height: 100% !important;
     padding-bottom: 0px;
 }
 
