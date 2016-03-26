@@ -1,9 +1,12 @@
 "use strict";
 
+var books_list = [];
+
 function setupPage() {
     funSearchHint();
     getBookList();
     setupUploadButton();
+    setupSearchButton();
 } 
 
 function getBookList() {
@@ -21,25 +24,34 @@ function getBookList() {
 function displayBookList(book_files) {
     var target = document.getElementById('book-container');
     var bookCovers = formatBookList(book_files)
-    target.innerHTML = bookCovers;
+    // keep warning if no books found
+    if (bookCovers != "") {
+        target.innerHTML = bookCovers;
+    }
 }
 
 function formatBookList(book_files) {
-    var books_list = book_files.split("\n");
+    books_list = book_files.split("\n");
     // remove files that are not PDF, for now
-    books_list = books_list.filter(function(element) {return element.indexOf(".pdf") != -1});
+    var displayed_books_list = books_list.filter(function(element) {
+        return element.indexOf(".pdf") != -1;
+    });
 
     var bookCovers = "";
-    for (var x = 0; x < books_list.length; x++) {
-        bookCovers += "<div class='card'>"
-                      + "<img src='books/thumbnails/" + books_list[x] + ".png'" 
-                      + "onerror='this.src=\"books/thumbnails/generic.png\"'"
-                      + "class='card-img'/>"
-                      + "<a href='books/" + books_list[x] + "'>"
-                      + books_list[x] + "</a>" + "</div>";
+    for (var x = 0; x < displayed_books_list.length; x++) {
+        bookCovers += generateBookCard(displayed_books_list[x]);
     }
 
     return bookCovers;
+}
+
+function generateBookCard(bookName) {
+        return "<div class='card'>"
+              + "<img src='books/thumbnails/" + bookName + ".png'" 
+              + "onerror='this.src=\"books/thumbnails/generic.png\"'"
+              + "class='card-img'/>"
+              + "<a href='books/" + bookName + "'>"
+              + bookName + "</a>" + "</div>";
 }
 
 Array.prototype.randomElement = function () {
@@ -95,6 +107,36 @@ function setupBookCover() {
         modifiedRequest.open("POST", "cgi-bin/upload.sh");
         modifiedRequest.send(formData);
     });
+}
+
+function setupSearchButton() {
+    document.forms["searchbar"]["searchbtn"].onclick = function() {
+        var searchTerm = document.forms["searchbar"]["searchterm"].value;
+        searchBooks(searchTerm);
+    };
+    document.forms["searchbar"].onsubmit = function() {
+        return false;
+    }
+}
+
+function searchBooks(searchTerm) {
+    var searchResults = books_list.filter(function(element) {
+        // Regex to be case insensitive
+        return element.search(new RegExp(searchTerm, "i")) != -1;
+    });
+
+    var bookCovers = "";
+    for (var x = 0; x < searchResults.length; x++) {
+        bookCovers += generateBookCard(searchResults[x]);
+    }
+
+    var target = document.getElementById('book-container');
+    if (bookCovers != "") {
+        target.innerHTML = bookCovers;
+    } else { 
+        target.innerHTML = "<div id='searchFail'> No Results Found </div>";
+    }
+
 }
 
 window.onload = setupPage;
