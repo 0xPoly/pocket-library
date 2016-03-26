@@ -175,3 +175,16 @@ noscript {
     background-color: #9D9999;
 }
 
+#nobooks {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+#nobooks img {
+    margin-top: 15%;
+}
+
+#nobooks em {
+    color: lightgrey;
+}

@@ -13,7 +13,7 @@
             <h1>Pocket Library</h1>
             <form name="searchbar" id="searchbar">
                 <input type="text" name="searchterm">
-                <input type="submit" value="Search" class="clear demo-pricing demo-info-1"/>
+                <input type="button" name="searchbtn" value="Search" class="clear demo-pricing demo-info-1"/>
             </form>
             <hr>
             <noscript> 
@@ -26,8 +26,13 @@
 
         <div id="bookshelf" role="primary">
             <h2>Book Selection</h2>
-                Browse at your leisure...
                 <div id="book-container">
+                    <div id="nobooks">
+                        <h3> No Books Found </h3>
+                        Quick, upload some on the right. <br>
+                        <img src="scream.svg"/> <br>
+                        <em>"A life unexamined is a life not worth living"</em>
+                    </div>
                 </div>
         </div>
 
