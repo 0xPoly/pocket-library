@@ -1,29 +1,18 @@
 "use strict";
 
-var books_list = [];
-
 function setupPage() {
     funSearchHint();
-    getBookList();
+    getBookList().then(function() {
+        displayBookList();
+        setupSearchButton();
+    });
     setupUploadButton();
-    setupSearchButton();
 } 
 
-function getBookList() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
-            var book_files = xhttp.responseText;
-            displayBookList(book_files);
-        }
-    };
-    xhttp.open("GET", "cgi-bin/book-list.sh", true);
-    xhttp.send();
-} 
 
 function displayBookList(book_files) {
     var target = document.getElementById('book-container');
-    var bookCovers = formatBookList(book_files)
+    var bookCovers = formatBookList(book_files);
     // keep warning if no books found
     if (bookCovers != "") {
         target.innerHTML = bookCovers;
@@ -31,7 +20,6 @@ function displayBookList(book_files) {
 }
 
 function formatBookList(book_files) {
-    books_list = book_files.split("\n");
     // remove files that are not PDF, for now
     books_list = books_list.filter(function(element) {
         return element.indexOf(".pdf") != -1;
