@@ -3,6 +3,7 @@
     <head>
         <title>Pocket Library</title>
         <link rel="stylesheet" href="index.css">
+        <script rel="text/javascript" src="js/base.js"></script>
         <script rel="text/javascript" src="js/index.js"></script>
         <script rel="text/javascript" src="books/js/pdf.js"></script>
         <script rel="text/javascript" src="js/upload.js"></script>
@@ -12,8 +13,9 @@
         <div id="header">
             <h1>Pocket Library</h1>
             <form name="searchbar" id="searchbar">
+                <a href="admin.html" name="adminbtn" id="adminbtn" class="clear flat-btn red-btn"> Admin Login </a>
                 <input type="text" name="searchterm">
-                <input type="button" name="searchbtn" value="Search" class="clear demo-pricing demo-info-1"/>
+                <input type="button" name="searchbtn" value="Search" class="clear flat-btn orange-btn"/>
             </form>
             <hr>
             <noscript> 
@@ -47,7 +49,7 @@
                 <input type="file" name="file"/>
                 <input type="hidden" name="filename"/>
                 <input type="button" name="upload-thing" value="Upload"
-                class="clear demo-pricing demo-info-1"/>
+                class="clear flat-btn orange-btn"/>
             </form>
             <div class="footnote">
                 <hr>
