@@ -29,10 +29,10 @@ function createManagerWidgets() {
 }
 
 function generateManagerWidget(bookName) {
-        return "<div class='book-widget'>"
+        return "<div class='book-widget card'>"
               + "<em>" + bookName + "</em>"
               + "<form class='book-delete' name='upload-form'"
-              + "method='post' action='cgi-bin/restricted/delete.sh'"
+              + "method='post' action='cgi-bin/admin/delete.sh'"
               + "enctype='multipart/form-data'>"
               + "<input type='hidden' name='bookname' value='" + bookName + "'/>"
               + "<input type='submit' value='Delete'/>"

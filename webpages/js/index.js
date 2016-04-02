@@ -78,7 +78,7 @@ function prepareAndUpload() {
 function setupBookName() {
     var filename = document.forms["upload-form"]["file"].files[0].name;
     // bash on OpenWRT doesn't handle spaces in filenames properly
-    filename = filename.replace(/ /g,"_");
+    filename = filename.replace(/ /g,"-");
     document.forms["upload-form"]["filename"].value = filename;
 }
 
