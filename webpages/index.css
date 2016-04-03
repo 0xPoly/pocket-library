@@ -25,6 +25,11 @@ h1 {
     vertical-align: center;
 }
 
+h1 a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
 h2 {
     color: #64441F;
 }

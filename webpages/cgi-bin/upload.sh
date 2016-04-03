@@ -27,8 +27,8 @@ if [ "$REQUEST_METHOD" = "POST" ]; then
 
     if [ -f /etc/approval-needed ];
     then
-        mkdir "/mnt/usb/approval/"
-        mv $TMPOUT"1" "/mnt/usb/approval/"$NAME
+        mkdir "/mnt/usb/approve/"
+        mv $TMPOUT"1" "/mnt/usb/approve/"$NAME
     else 
         mv $TMPOUT"1" "/mnt/usb/"$NAME
     fi
