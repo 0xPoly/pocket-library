@@ -3,7 +3,9 @@ echo "Content-Type: text/plain"
 echo
 
 if [ "$REQUEST_METHOD" = "POST" ]; then
-    TMPOUT=/mnt/usb/tmp
+    TMPOUT=/mnt/usb/
+    # use a random number generator to allow multiple uploads at the same time
+    TMPOUT=$TMPOUT`</dev/urandom tr -dc 0-9 | dd bs=6 count=1 2>/dev/null | sed -e 's/^0\+//'`
     cat >$TMPOUT
 
     # Split into 4 files:
@@ -22,12 +24,26 @@ if [ "$REQUEST_METHOD" = "POST" ]; then
 
     # Keep the name
     NAME=`cat $TMPOUT"2" | tr -d '\r\n'`
-    mv $TMPOUT"1" "/mnt/usb/"$NAME
-    mv $TMPOUT"3" "/mnt/usb/thumbnails/"$NAME".png"
 
+    if [ -f /etc/approval-needed ];
+    then
+        mkdir "/mnt/usb/approval/"
+        mv $TMPOUT"1" "/mnt/usb/approval/"$NAME
+    else 
+        mv $TMPOUT"1" "/mnt/usb/"$NAME
+    fi
+
+    mv $TMPOUT"3" "/mnt/usb/thumbnails/"$NAME".png"
     rm $TMPOUT"2"
     rm $TMPOUT
     
+        # upload approval needed
+        echo "1"
+    else
+        # aproval not needed
+        echo "0"
+    fi
+
     echo 'Status: 204 No Content'
     echo
 fi
