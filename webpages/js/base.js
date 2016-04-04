@@ -16,3 +16,20 @@ function getBookList() {
         xhttp.send();
     });
 } 
+
+function URIexists(URI) {
+    return new Promise(function(resolve, reject) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4) {
+                if (xhttp.status == 404) {
+                    resolve(false);
+                } else {
+                    resolve(true);
+                }
+            }
+        };
+        xhttp.open("HEAD", URI);
+        xhttp.send();
+    });
+}

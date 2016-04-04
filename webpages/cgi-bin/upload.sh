@@ -33,17 +33,12 @@ if [ "$REQUEST_METHOD" = "POST" ]; then
         mv $TMPOUT"1" "/mnt/usb/"$NAME
     fi
 
+    mkdir "/mnt/usb/thumbnails"
+
     mv $TMPOUT"3" "/mnt/usb/thumbnails/"$NAME".png"
     rm $TMPOUT"2"
     rm $TMPOUT
     
-        # upload approval needed
-        echo "1"
-    else
-        # aproval not needed
-        echo "0"
-    fi
-
     echo 'Status: 204 No Content'
     echo
 fi

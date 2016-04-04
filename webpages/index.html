@@ -13,7 +13,6 @@
         <div id="header">
             <h1><a href="/">Pocket Library<a/></h1>
             <form name="searchbar" id="searchbar">
-                <a href="admin.html" name="adminbtn" id="adminbtn" class="clear flat-btn red-btn"> Admin Login </a>
                 <input type="text" name="searchterm">
                 <input type="button" name="searchbtn" value="Search" class="clear flat-btn orange-btn"/>
             </form>
@@ -38,6 +37,16 @@
         </div>
 
         <div id="sidebar" role="complementary">
+            <div id="no-password-warning">
+                <h3> WARNING </h3>
+                Administrator password is not set. Please enter a password below to secure
+                your Pocket Library:
+                <form class='password-set' method='post' action='cgi-bin/set-password.sh'
+                enctype='multipart/form-data'>
+                    <input type='text' name='passwd' id="no-password-warning-input" required/>
+                    <input type='submit' value='Set Password' class="clear flat-btn red-btn"/>
+                </form>
+            </div>
             <h3> Welcome </h3>
                 This is Pocket Library, the portable WiFi library that anyone can read from and
                 contribute to. Learn to setup your own <a href="website">here</a>.
@@ -52,8 +61,12 @@
             </form>
             <div class="footnote">
                 <hr>
-                Please note that books need to be approved by the library owner before you they are
-                shown.
+                <div id="approve-notice"> 
+                    Please note that books need to be approved by the library owner before you they are
+                    shown.
+                </div>
+                <br>
+                <a href="admin.html">Admin Login</a> &bull; About
             </div>
         </div>
     </body>

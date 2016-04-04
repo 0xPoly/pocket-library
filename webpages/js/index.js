@@ -7,6 +7,11 @@ function setupPage() {
         setupSearchButton();
     });
     setupUploadButton();
+    URIexists("cgi-bin/set-password.sh").then(function(exists) {
+        if (!exists) {
+            document.getElementById("no-password-warning").style.display = "none";
+        }
+    });
 } 
 
 

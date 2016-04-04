@@ -233,3 +233,18 @@ noscript {
 .book-delete {
     float: right;
 }
+
+#no-password-warning {
+    color: white;
+    background: red;
+    padding: 15px;
+}
+
+#no-password-warning h3 {
+    color: white;
+}
+
+#no-password-warning-input {
+    margin-top: 10px;
+    height: 35px;
+}
