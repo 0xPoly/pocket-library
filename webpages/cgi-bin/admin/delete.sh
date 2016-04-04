@@ -1,9 +1,10 @@
 #!/bin/ash
 
 # junk, headers, etc
-read first
-read second
-read third
+read
+read
+read
+# important line
 read fourth
 
 fourth=`echo -n $fourth | tr -d "\r\n"`

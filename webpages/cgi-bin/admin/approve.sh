@@ -1,8 +1,11 @@
 #!/bin/ash
 
-read first
-read second
-read third
+# junk
+read
+read
+read
+
+#important bits
 read fourth
 
 fourth=`echo -n $fourth | tr -d "\r\n"`
