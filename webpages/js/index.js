@@ -2,10 +2,12 @@
 
 var PAGE_NUMBER = 0;
 var PAGE_SIZE_BOOKS = 12;
+var PAGE_COUNT;
 
 function setupPage() {
     funSearchHint();
     getBookList().then(function() {
+        PAGE_COUNT = Math.ceil(books_list.length / PAGE_SIZE_BOOKS);
         displayBookList();
         setupSearchButton();
         setupNavigationButtons();
@@ -151,7 +153,36 @@ function searchBooks(searchTerm) {
 }
 
 function setupNavigationButtons() {
-    
+    var next = document.getElementById("next-btn");
+    next.onclick = function() {
+        if (PAGE_NUMBER == PAGE_COUNT - 1) {
+            // already on last page
+            return;
+        } else {
+            PAGE_NUMBER += 1;
+            displayBookList();
+        }
+        updatePageCounter();
+    }
+
+    var previous = document.getElementById("prev-btn");
+    previous.onclick = function() {
+        if (PAGE_NUMBER == 0) {
+            // already on first page
+            return;
+        } else {
+            PAGE_NUMBER -= 1;
+            displayBookList();
+        }
+        updatePageCounter();
+    }
+
+    updatePageCounter();
+}
+
+function updatePageCounter() {
+    var target = document.getElementById("page-counter");
+    target.innerHTML = "Page " + (PAGE_NUMBER + 1) + " of " + PAGE_COUNT;
 }
 
 window.onload = setupPage;
