@@ -238,13 +238,42 @@ noscript {
     color: white;
     background: red;
     padding: 15px;
+    display: none;
 }
 
 #no-password-warning h3 {
-    color: white;
+    color: white !important;
+    margin-top: 0px;
 }
 
 #no-password-warning-input {
     margin-top: 10px;
     height: 35px;
+}
+
+#footer-footer {
+    width: 100%;
+    height: 40px;
+    clear: left;
+    margin-bottom: 15px;
+}
+
+#navigation {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    clear: none;
+}
+
+#navigation button, #page-counter {
+    float: left;
+    clear: none;
+    width: 31%;
+}
+
+#big-container {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
 }

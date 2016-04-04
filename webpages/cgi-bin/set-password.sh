@@ -23,6 +23,7 @@ if [ "$REQUEST_METHOD" = "POST" ]; then
     # Once passwd is set, move this file into password
     # protected directory and self destruct
     head -n -8 "/www/cgi-bin/set-password.sh" > "/www/cgi-bin/admin/change-password.sh"
+    tail -1 "/www/cgi-bin/set-password.sh" >> "/www/cgi-bin/admin/change-password.sh"
     chmod +x /www/cgi-bin/admin/change-password.sh
     rm "/www/cgi-bin/set-password.sh"
 

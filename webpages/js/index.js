@@ -1,15 +1,26 @@
 "use strict";
 
+var PAGE_NUMBER = 0;
+var PAGE_SIZE_BOOKS = 12;
+
 function setupPage() {
     funSearchHint();
     getBookList().then(function() {
         displayBookList();
         setupSearchButton();
+        setupNavigationButtons();
     });
     setupUploadButton();
+
     URIexists("cgi-bin/set-password.sh").then(function(exists) {
-        if (!exists) {
-            document.getElementById("no-password-warning").style.display = "none";
+        if (exists) {
+            document.getElementById("no-password-warning").style.display = "block";
+        }
+    });
+
+    fetchURI("cgi-bin/approval-needed.sh").then(function(response) {
+        if (response == 0) {
+            document.getElementById("approve-notice").style.display = "none";
         }
     });
 } 
@@ -31,7 +42,9 @@ function formatBookList(book_files) {
     });
 
     var bookCovers = "";
-    for (var x = 0; x < books_list.length; x++) {
+    for (var x = PAGE_NUMBER * PAGE_SIZE_BOOKS;
+            x < books_list.length && x < (PAGE_NUMBER * PAGE_SIZE_BOOKS) + PAGE_SIZE_BOOKS;
+            x++) {
         bookCovers += generateBookCard(books_list[x]);
     }
 
@@ -44,7 +57,7 @@ function generateBookCard(bookName) {
               + "onerror='this.src=\"books/thumbnails/generic.png\"'"
               + "class='card-img'/>"
               + "<a href='books/" + bookName + "'>"
-              + bookName + "</a>" + "</div>";
+              + bookName.replace(/-/g," ") + "</a>" + "</div>";
 }
 
 Array.prototype.randomElement = function () {
@@ -105,10 +118,12 @@ function setupBookCover() {
 function setupSearchButton() {
     document.forms["searchbar"]["searchbtn"].onclick = function() {
         var searchTerm = document.forms["searchbar"]["searchterm"].value;
+        searchTerm = searchTerm.replace(/ /g,"-");
         searchBooks(searchTerm);
     };
     document.forms["searchbar"].onsubmit = function() {
         var searchTerm = document.forms["searchbar"]["searchterm"].value;
+        searchTerm = searchTerm.replace(/ /g,"-");
         searchBooks(searchTerm);
         // disables get request
         return false;
@@ -133,6 +148,10 @@ function searchBooks(searchTerm) {
         target.innerHTML = "<div id='searchFail'> No Results Found </div>";
     }
 
+}
+
+function setupNavigationButtons() {
+    
 }
 
 window.onload = setupPage;

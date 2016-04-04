@@ -26,11 +26,20 @@
         </div>
 
         <div id="book-approve">
+            <h2> Change Password </h2>
+            <form class='password-set' method='post' action='cgi-bin/admin/change-password.sh'
+            enctype='multipart/form-data'>
+                <input type='text' name='passwd' id="no-password-warning-input" required/>
+                <input type='submit' value='Set Password' class="clear flat-btn red-btn"/>
+            </form>
+            <hr>
             <h2> Upload Approval </h2>
             <div id="approval-status">
             </div>
-            <button id="approval-switch"></button>
-            Books not yet approved:
+            <button id="approval-switch" class="clear flat-btn orange-btn"></button>
+            <br>
+            <hr>
+            <h3> Books not yet approved </h3>
             <div id="approval-list">
             All books approved :)
             </div>
