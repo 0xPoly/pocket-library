@@ -5,6 +5,9 @@
         <link rel="stylesheet" href="index.css">
         <script rel="text/javascript" src="js/base.js"></script>
         <script rel="text/javascript" src="js/admin.js"></script>
+
+        <!-- It seems that uhttpd has lots of trouble with caching -->
+        <meta http-equiv="Cache-control" content="no-cache">
     </head>
 
     <body>
@@ -18,6 +21,17 @@
                 </em>
             </noscript>
         </div>
+
+        <div id="load-message" class="cssload-circle">
+                <div class="cssload-up">
+                        <div class="cssload-innera"></div>
+                </div>
+                <div class="cssload-down">
+                        <div class="cssload-innerb"></div>
+                </div>
+        </div>
+
+        <div id="everything-else"> 
 
         <div id="book-manager">
             <h2> Manage Uploaded Books </h2>
@@ -43,6 +57,7 @@
             <div id="approval-list">
             All books approved :)
             </div>
+        </div>
         </div>
 </html>
 

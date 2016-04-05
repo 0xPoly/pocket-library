@@ -19,6 +19,8 @@ function fillBookManager() {
     if (bookWidgets != "") {
         target.innerHTML = bookWidgets;
     }
+    document.getElementById("load-message").style.display = "none";
+    document.getElementById("everything-else").style.display = "block";
 }
 
 function createManagerWidgets() {
@@ -99,12 +101,14 @@ function fillApprovalManager(books) {
     if (books != "") {
         var approveWidgets = createApprovalWidgets(books);
         target.innerHTML = approveWidgets;
+        hookupApprovalWidgets();
     }
 }
 
 function createApprovalWidgets(books) {
     var result = "";
     for(var i = 0; i < books.length; i++) {
+        if (books[i] != "") {
         result += "<div class='approval-widget card book-widget'>"
                 + "<a href='/books/approve/" + books[i] + "'>"
                 + books[i] + "</a>"
@@ -115,8 +119,19 @@ function createApprovalWidgets(books) {
                 + "<input type='submit' value='Approve'/>"
                 + "</form>"
                 +  "</div>"
+        }
     }
     return result;
+}
+
+function hookupApprovalWidgets() {
+    var approvalWidgets = document.getElementsByClassName("book-approve");
+    for (var x = 0; x < approvalWidgets.length; x++) {
+        approvalWidgets[x].onsubmit = function () {
+            location.reload(true);
+            return false;
+        }
+    }
 }
 
 window.onload = setupPage;

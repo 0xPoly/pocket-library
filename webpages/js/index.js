@@ -31,9 +31,14 @@ function setupPage() {
 function displayBookList(book_files) {
     var target = document.getElementById('book-container');
     var bookCovers = formatBookList(book_files);
-    // keep warning if no books found
     if (bookCovers != "") {
+        // show books, navigation menu
         target.innerHTML = bookCovers;
+        document.getElementById("navigation").style.display = "block";
+    } else {
+        // displays no books message, remove loading thing
+        document.getElementById("load-message").style.display = "none";
+        document.getElementById("nobooks").style.display = "block";
     }
 }
 
@@ -82,6 +87,20 @@ function funSearchHint() {
                  "Fight the book burners!"];
     var selected = hints.randomElement();
     document.searchbar.searchterm.placeholder = selected; 
+
+    var messages = ["Loading... You think it's easy being a computer?",
+                    "Loading... Still faster than a librarian",
+                    "Loading... I wish they'd give me a raise...",
+                    "Loading... Books as far as the eye can see.",
+                    "Loading... What? No, I was not taking a cybernap!",
+                    "Loading... CyberLibrary cyberprovides cyberbooks.",
+                    "Loading... Magic spells take time, you know?",
+                    "Loading... These messages are modern-day fortune cookies.",
+                    "Loading... Binding the books as fast as I can!",
+                    "Loading... So many books!"]
+
+    var selected2 = messages.randomElement();
+    document.getElementById("witty-loading").innerHTML = selected2; 
 }
 
 function setupUploadButton() {
@@ -91,6 +110,7 @@ function setupUploadButton() {
 }
 
 function prepareAndUpload() {
+    document.forms["upload-form"]["upload-thing"].value = "Uploading...";
     setupBookName();
     setupBookCover();
 }
@@ -114,6 +134,9 @@ function setupBookCover() {
 
         modifiedRequest.open("POST", "cgi-bin/upload.sh");
         modifiedRequest.send(formData);
+
+        alert("Upload Complete. Thanks!");
+        location.reload(true);
     });
 }
 

@@ -7,6 +7,9 @@
         <script rel="text/javascript" src="js/index.js"></script>
         <script rel="text/javascript" src="books/js/pdf.js"></script>
         <script rel="text/javascript" src="js/upload.js"></script>
+
+        <!-- It seems that uhttpd has lots of trouble with caching -->
+        <meta http-equiv="Cache-control" content="no-cache">
     </head>
 
     <body>
@@ -28,6 +31,17 @@
         <div id="bookshelf" role="primary">
             <h2>Book Selection</h2>
                 <div id="book-container">
+                    <div id="load-message">
+                        <div class="cssload-circle">
+                                <div class="cssload-up">
+                                        <div class="cssload-innera"></div>
+                                </div>
+                                <div class="cssload-down">
+                                        <div class="cssload-innerb"></div>
+                                </div>
+                        </div>
+                        <div id="witty-loading"> </div>
+                    </div>
                     <div id="nobooks">
                         <img src="scream.svg"/> <br>
                         <h3> No Books Found </h3>
