@@ -14,21 +14,21 @@
 
     <body>
         <div id="header">
+            <img src="static/home.png"/>
             <h1><a href="/">Pocket Library</a></h1>
             <form name="searchbar" id="searchbar">
                 <input type="text" name="searchterm">
                 <input type="button" name="searchbtn" value="Search" class="clear flat-btn orange-btn"/>
             </form>
-            <hr>
+        </div>
+
+        <div id="bookshelf" role="primary">
             <noscript> 
                 <em>
                     Javascript is required to use the library. Sorry, processing has to be done
                     client-side. 
                 </em>
             </noscript>
-        </div>
-
-        <div id="bookshelf" role="primary">
             <h2>Book Selection</h2>
                 <div id="book-container">
                     <div id="load-message">
@@ -43,7 +43,7 @@
                         <div id="witty-loading"> </div>
                     </div>
                     <div id="nobooks">
-                        <img src="scream.svg"/> <br>
+                        <img src="static/scream.svg"/> <br>
                         <h3> No Books Found </h3>
                         Quick, upload some on the right. <br>
                     </div>

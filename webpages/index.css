@@ -13,21 +13,29 @@ html, body {
     height: 10%;
     width: 100%;
     margin-bottom: 0px;
+    border-bottom: 2px solid grey;
+}
+
+#header img {
+    height: 75%;
+    padding-left: 1%;
+    padding-bottom: 1%;
+    padding-top: 7px;
+    vertical-align: middle;
 }
 
 h1 {
     color: #64441F;
-    display:inline-block;
+    display: inline-block;
     margin: 0px;
-    padding-left: 5%;
+    padding-left: 1%;
     height: 80%;
-    padding-top: 1%;
-    vertical-align: center;
 }
 
 h1 a {
     color: inherit;
     text-decoration: inherit;
+    vertical-align: middle;
 }
 
 h2 {
@@ -281,6 +289,11 @@ noscript {
 
 #book-approve hr {
     margin-top: 15px;
+}
+
+.footnote a {
+    text-decoration: inherit;
+    color: inherit;
 }
 
 .cssload-circle{
