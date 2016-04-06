@@ -28,12 +28,21 @@ up and running.
 Device not on the list? No worries. Please note that this method requires basic familiarty with
 OpenWRT (or any custom router frimware) and the linux command line.
 
-Clone this repository:
+First, use [this page](https://wiki.openwrt.org/toh/start) to find the OpenWRT codename for your device. 
+For example, to find the code name for the TP-Link MR3020, type `MR3020` into the model search
+field. The corresponding device page is `tl-mr3020`. This is the codename for your device, 
+note it somewhere.
+
+
+Open the command line and clone this repository:
 
     git clone --depth 1 https://github.com/0xPoly/pocket-library.git
 
-Use [this page] to find the OpenWRT codename for your device. For example, the codename for the
-TP-Link TRM3020 is `XXX`.
+Next, download and build the image:
+
+    make all PL_MODEL=tl-mr3020
+
+If all goes well, you should have an image located in XXX.
 
 ## Contribute
 Familiar with OpenWrt and want to help out with Pocket Library? Follow the installation
