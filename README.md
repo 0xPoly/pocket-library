@@ -1,7 +1,7 @@
 Pocket Library
 ==============
 Share books from anywhere! Pocket Library is a lightweight portable library designed to run on
-OpenWrt devices.
+OpenWrt devices. **Still in development. Don't actually run this!**
 
 ![screenshot](screenshot.png)
 
