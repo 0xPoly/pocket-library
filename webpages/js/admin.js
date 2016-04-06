@@ -129,7 +129,6 @@ function hookupApprovalWidgets() {
     for (var x = 0; x < approvalWidgets.length; x++) {
         approvalWidgets[x].onsubmit = function () {
             location.reload(true);
-            return false;
         }
     }
 }
