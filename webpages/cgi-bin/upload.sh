@@ -4,14 +4,15 @@ echo
 
 if [ "$REQUEST_METHOD" = "POST" ]; then
     TMPOUT=/mnt/usb/
-    # use a random number generator to allow multiple uploads at the same time
+    # Random filename prefix to allow for simultaneous uploads
     TMPOUT=$TMPOUT`</dev/urandom tr -dc 0-9 | dd bs=6 count=1 2>/dev/null | sed -e 's/^0\+//'`
     cat >$TMPOUT
 
-    # Split into 4 files:
-    # 1.tmp, containing the PDF
-    # 2.tmp, containing the PDF name
-    # 3.tmp, containing the PDF cover PNG
+    # Split into 5 files:
+    # [RANDOM]1, containing the PDF
+    # [RANDOM]2, containing the PDF name
+    # [RANDOM]3, containing the PDF cover PNG
+    # [RANDOM]0 and [RANDOM]4, junk
     csplit --digits=1  --quiet --prefix=$TMPOUT $TMPOUT "/------WebKitFormBoundary/" "{*}"
     
     rm $TMPOUT"0"
@@ -25,6 +26,7 @@ if [ "$REQUEST_METHOD" = "POST" ]; then
     # Keep the name
     NAME=`cat $TMPOUT"2" | tr -d '\r\n'`
 
+    # Files that must be approved first kept in different folder
     if [ -f /etc/approval-needed ];
     then
         mkdir "/mnt/usb/approve/"
@@ -36,6 +38,8 @@ if [ "$REQUEST_METHOD" = "POST" ]; then
     mkdir "/mnt/usb/thumbnails"
 
     mv $TMPOUT"3" "/mnt/usb/thumbnails/"$NAME".png"
+
+    # Delete temporary files
     rm $TMPOUT"2"
     rm $TMPOUT
     

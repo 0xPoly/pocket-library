@@ -6,11 +6,13 @@ if [ "$REQUEST_METHOD" = "POST" ]; then
     read
     read
 
-    #important bits
+    # field that contains password
     read fourth
 
+    # Strip newline that some browsers add
     fourth=`echo -n $fourth | tr -d "\r\n"`
 
+    # Change password - chpasswd, etc don't work
     (echo $fourth; sleep 1; echo $fourth ) | passwd
 
     echo "Status-Code: 204"

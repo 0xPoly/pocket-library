@@ -1,17 +1,19 @@
 "use strict";
 
 var PAGE_NUMBER = 0;
-var PAGE_SIZE_BOOKS = 12;
+var PAGE_SIZE_BOOKS = 12; // number of books per page
 var PAGE_COUNT;
 
 function setupPage() {
     funSearchHint();
+
     getBookList().then(function() {
         PAGE_COUNT = Math.ceil(books_list.length / PAGE_SIZE_BOOKS);
         displayBookList();
         setupSearchButton();
         setupNavigationButtons();
     });
+
     setupUploadButton();
 
     URIexists("cgi-bin/set-password.sh").then(function(exists) {
@@ -47,7 +49,8 @@ function formatBookList(book_files) {
     books_list = books_list.filter(function(element) {
         return element.indexOf(".pdf") != -1;
     });
-    
+   
+    // update number of pages, to avoid counting non-pdf files
     PAGE_COUNT = Math.ceil(books_list.length / PAGE_SIZE_BOOKS);
 
     var bookCovers = "";
@@ -126,6 +129,8 @@ function setupBookCover() {
     var bookFileRef = window.URL.createObjectURL(bookFile);
     generateThumbURI(bookFileRef).then(function(base64Thumbnail) {
         var binaryThumbnail = dataURItoBlob(base64Thumbnail);
+
+        // steal data from already-filled form
         var modifiedRequest = new XMLHttpRequest();
 
         var formData = new FormData(document.forms["upload-form"]);
@@ -135,6 +140,7 @@ function setupBookCover() {
         modifiedRequest.send(formData);
 
         modifiedRequest.addEventListener('readystatechange', function(e) {
+            // AKA POST request complete and server closed connection
             if (this.readyState == 4) {
                 alert("Upload Complete. Thanks!");
                 location.reload(true);
