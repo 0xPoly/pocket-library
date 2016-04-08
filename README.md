@@ -13,26 +13,32 @@ Features:
  * **Take your books with you** - Install on a portable router for sharing books on the road
  * **Be in control** - Choose whether books uploaded to the library need to be approved
  * **Easy insallation** - Simply flash the Pocket Library image and plug in a USB drive
+ * **Wide compatability** - Works with any router that supports OpenWRT
 
 ## Installation
 There are two methods for installation. The first method is the easiest, but is only compatible
 with the following devices:
 
-* [TP-Link TRM3020](some link)
-* [TP-Link XXX](some link)
+* [TP-Link MR3020](https://wiki.openwrt.org/toh/tp-link/tl-mr3020)
+* [TP-Link MR3420](http://www.amazon.com/TP-LINK-TL-MR3420-3G-Wireless-Router/dp/B003WK62OS)
+* More devices to be added soon
 
 If your device is one of these, follow [this visual guide]() to get Pocket Library quickly 
 up and running.
 
 ### Generating Pokcet Library Images
 Device not on the list? No worries. Please note that this method requires basic familiarty with
-OpenWRT (or any custom router frimware) and the linux command line.
+OpenWRT (or any custom router frimware) and the linux command line. Only compatible with `x86_64` systems.
+
+If you are following this method, I'll gladly help with troubleshooting so that we can add
+your device to the *confirmed working* list above. Details to contact me [here](https://darkdepths.net/pages/contact-keys.html).
+
 
 First, use [this page](https://wiki.openwrt.org/toh/start) to find the OpenWRT codename for your device. 
 For example, to find the code name for the TP-Link MR3020, type `MR3020` into the model search
-field. The corresponding device page is `tl-mr3020`. This is the codename for your device, 
-note it somewhere.
+field.
 
+XXX explain how to find TARGET and ARCH.
 
 Open the command line and clone this repository:
 
@@ -40,12 +46,8 @@ Open the command line and clone this repository:
 
 Next, download and build the image:
 
-    make all PL_MODEL=tl-mr3020
+    make all ARCH=ar71xx TARGET=TLMR3420
 
-If all goes well, you should have an image located in XXX.
-
-## Contribute
-Familiar with OpenWrt and want to help out with Pocket Library? Follow the installation
-instructions for "the hard way" and contact us. I'll gladly help with troublshooting 
-devices so that we can add them to the "confirmed working" list above.
+If all goes well, you should have an image located in `build/openwrt/OpenWrt-ImageBuilder-*/bin/`.
+The image that you need to install to the router ends with `*-factory.bin`.
 
