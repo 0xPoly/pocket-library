@@ -12,4 +12,5 @@ fourth=`echo -n $fourth | tr -d "\r\n"`
 rm "/mnt/usb/$fourth"
 
 echo "Status-Code: 204"
-echo
+echo ""
+

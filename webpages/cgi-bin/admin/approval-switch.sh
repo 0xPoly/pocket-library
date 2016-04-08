@@ -10,3 +10,4 @@ fi
 echo "Status-code: 204"
 echo ""
 
+exit 0

@@ -47,6 +47,8 @@ function formatBookList(book_files) {
     books_list = books_list.filter(function(element) {
         return element.indexOf(".pdf") != -1;
     });
+    
+    PAGE_COUNT = Math.ceil(books_list.length / PAGE_SIZE_BOOKS);
 
     var bookCovers = "";
     for (var x = PAGE_NUMBER * PAGE_SIZE_BOOKS;
@@ -88,16 +90,13 @@ function funSearchHint() {
     var selected = hints.randomElement();
     document.searchbar.searchterm.placeholder = selected; 
 
-    var messages = ["Loading... You think it's easy being a computer?",
-                    "Loading... Still faster than a librarian",
-                    "Loading... I wish they'd give me a raise...",
-                    "Loading... Books as far as the eye can see.",
-                    "Loading... What? No, I was not taking a cybernap!",
-                    "Loading... CyberLibrary cyberprovides cyberbooks.",
-                    "Loading... Magic spells take time, you know?",
-                    "Loading... These messages are modern-day fortune cookies.",
-                    "Loading... Binding the books as fast as I can!",
-                    "Loading... So many books!"]
+    var messages = ["Still faster than a librarian...",
+                    "Books as far as the eye can see...",
+                    "CyberLibrary cyberprovides cyberbooks...",
+                    "Binding the books as fast as I can!",
+                    "Look upon me Library, ye Mighty, and despair!",
+                    "Theirs not to reason why, Theirs but to serve eBooks and standby.",
+                    "Four score and seven years ago our fathers brought forth this code..."]
 
     var selected2 = messages.randomElement();
     document.getElementById("witty-loading").innerHTML = selected2; 
@@ -135,8 +134,12 @@ function setupBookCover() {
         modifiedRequest.open("POST", "cgi-bin/upload.sh");
         modifiedRequest.send(formData);
 
-        alert("Upload Complete. Thanks!");
-        location.reload(true);
+        modifiedRequest.addEventListener('readystatechange', function(e) {
+            if (this.readyState == 4) {
+                alert("Upload Complete. Thanks!");
+                location.reload(true);
+            }
+        });
     });
 }
 
