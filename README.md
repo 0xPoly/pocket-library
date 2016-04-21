@@ -27,7 +27,7 @@ If your device is one of these, follow [this visual guide]() to get Pocket Libra
 up and running.
 
 ### Generating Pokcet Library Images
-Device not on the list? No worries. Please note that this method requires basic familiarty with
+Device not on the list? No worries. Please note that this method requires basic familiarity with
 OpenWRT (or any custom router frimware) and the linux command line. Only compatible with `x86_64` systems.
 
 If you are following this method, I'll gladly help with troubleshooting so that we can add
@@ -44,10 +44,22 @@ Open the command line and clone this repository:
 
     git clone --depth 1 https://github.com/0xPoly/pocket-library.git
 
+Install make's dependencies:
+
+    sudo apt-get install subversion build-essential libncurses5-dev zlib1g-dev gawk git ccache gettext libssl-dev xsltproc
+
 Next, download and build the image:
 
     make all ARCH=ar71xx TARGET=TLMR3420
 
 If all goes well, you should have an image located in `build/openwrt/OpenWrt-ImageBuilder-*/bin/`.
 The image that you need to install to the router ends with `*-factory.bin`.
+
+Beforing powering up the device, we will need to unzip the contents of
+`usb.zip` onto a USB flash drive. Make sure the flash drive has one FAT
+partition. All the books will be stored on the flash drive.
+
+Insert the flash drive into your router, install the generated image. If
+all goes well, after some amount of time the router will reboot and Pocket
+Library will be up and running.
 
